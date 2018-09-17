@@ -2,11 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+        {% include "inc/stylesheets.html.twig" %}
+
+        {% block stylesheets %}
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include "inc/menu.html.twig" %}
+        <div class="container">
+            <br/>
+            {% block body %}{% endblock %}
+        <div>
+        {% include "inc/js.html.twig" %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
