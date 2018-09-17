@@ -23,7 +23,14 @@ class CellController extends AbstractController
     public function news(string $title = "world")
     {
         return $this->render("page/art.html.twig", [
-            "title" => $title,
+            "title" => $this->titleize($title),
         ]);
+    }
+
+    private function titleize(string $str): string
+    {
+        $spaced = preg_replace("/\W/u", " ", $str);
+        $capitalized = ucwords($spaced);
+        return $capitalized;
     }
 }
