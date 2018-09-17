@@ -12,7 +12,7 @@ class CellController extends AbstractController
      */
     public function home()
     {
-        return $this->render("home.html.twig", [
+        return $this->render("page/home.html.twig", [
             "title" => "Home",
         ]);
     }
@@ -22,7 +22,7 @@ class CellController extends AbstractController
      */
     public function news(string $title = "world")
     {
-        return $this->render("article/art.html.twig", [
+        return $this->render("page/art.html.twig", [
             "title" => $title,
         ]);
     }
