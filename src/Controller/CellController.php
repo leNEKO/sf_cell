@@ -16,4 +16,14 @@ class CellController extends AbstractController
             "title" => "Home",
         ]);
     }
+
+    /**
+     * @Route("/news/{title}", name="app_news")
+     */
+    public function news(string $title = "world")
+    {
+        return $this->render("article/art.html.twig", [
+            "title" => $title,
+        ]);
+    }
 }
