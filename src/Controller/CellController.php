@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use Michelf\MarkdownInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,10 +23,23 @@ class CellController extends AbstractController
     /**
      * @Route("/news/{slug}", name="news")
      */
-    public function news(string $slug = "world")
-    {
+    public function news(
+        string $slug = "world",
+        MarkdownInterface $markdown,
+        AdapterInterface $cache
+    ) {
+        $content = 'This *is* some __markdown__';
+
+        $item = $cache->getItem('markdown_' . md5($content));
+        if (!$item->isHit()) {
+            $item->set($markdown->transform($content));
+            $cache->save($item);
+        }
+        $content = $item->get();
+
         return $this->render("page/art.html.twig", [
             "title" => $this->titleIze($slug),
+            "content" => $content,
             "slug" => $slug,
         ]);
     }
