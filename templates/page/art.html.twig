@@ -5,6 +5,9 @@
     <h1>
         Hello {{ title }} !
     </h1>
+    <a href="{{ path("news_toggle_heart", { title: title }) }}" class="heart btn btn-secondary">
+        <i class="far fa-heart" aria-hidden="true"></i>
+    </a>
 {% endblock %}
 
 {% block javascripts %}
