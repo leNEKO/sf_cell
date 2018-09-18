@@ -19,12 +19,13 @@ class CellController extends AbstractController
     }
 
     /**
-     * @Route("/news/{title}", name="news")
+     * @Route("/news/{slug}", name="news")
      */
-    public function news(string $title = "world")
+    public function news(string $slug = "world")
     {
         return $this->render("page/art.html.twig", [
-            "title" => $this->titleIze($title),
+            "title" => $this->titleIze($slug),
+            "slug" => $slug,
         ]);
     }
 
@@ -36,12 +37,13 @@ class CellController extends AbstractController
     }
 
     /**
-     * @Route("/news/{title}/heart", name="news_toggle_heart", methods={"POST"})
+     * @Route("/news/{slug}/heart", name="news_toggle_heart", methods={"POST"})
      */
-    public function toggleHeart(string $title): JsonResponse
+    public function toggleHeart(string $slug): JsonResponse
     {
         return $this->json([
             "hearts" => rand(5, 100),
+            "slug" => $slug,
         ]);
     }
 }

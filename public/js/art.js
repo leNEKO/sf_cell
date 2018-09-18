@@ -1,16 +1,17 @@
 $(function() {
-    $(".heart").on("click", function(e) {
-        e.preventDefault();
-        $link = $(this);
+  $(".heart").on("click", function(e) {
+    e.preventDefault();
+    const $link = $(e.currentTarget);
+    const $heart = $link.find(".fa-heart");
+    const $likes = $link.find(".likes");
 
-        $(this)
-            .find(".fa-heart")
-            .toggleClass("far")
-            .toggleClass("fa");
+    $heart.toggleClass("far").toggleClass("fa");
 
-        $.ajax({
-            method: "POST",
-            url: $link.attr("href")
-        });
+    $.ajax({
+      method: "POST",
+      url: $link.attr("href")
+    }).done(function(data) {
+      $likes.html(data.hearts);
     });
+  });
 });

@@ -3,10 +3,11 @@
 
 {% block body %}
     <h1>
-        Hello {{ title }} !
+        Godspeed {{ title }} !
     </h1>
-    <a href="{{ path("news_toggle_heart", { title: title }) }}" class="heart btn btn-secondary">
+    <a href="{{ path("news_toggle_heart", { slug: slug }) }}" class="heart btn btn-secondary">
         <i class="far fa-heart" aria-hidden="true"></i>
+        <span class="likes">5</span>
     </a>
 {% endblock %}
 
