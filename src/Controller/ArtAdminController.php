@@ -10,10 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArtAdminController extends AbstractController
 {
     /**
-     * @Route("/admin/cell/new")
+     * @Route("/admin/art/new")
      */
-    public function new(EntityManagerInterface $em)
-    {
+    function new (EntityManagerInterface $em) {
         $cell = (new Art())
             ->setTitle('Machin Patin Couffin')
             ->setSlug("machin-patin-couffin-" . rand(100, 999))

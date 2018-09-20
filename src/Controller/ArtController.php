@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Art;
+use Doctrine\ORM\EntityManagerInterface;
 use Michelf\MarkdownInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
@@ -23,11 +25,20 @@ class ArtController extends AbstractController
     /**
      * @Route("/art/{slug}", name="art")
      */
-    public function art(
+    public function show(
         string $slug = "world",
         MarkdownInterface $markdown,
-        AdapterInterface $cache
+        AdapterInterface $cache,
+        EntityManagerInterface $em
     ) {
+
+        $repository = $em->getRepository(Art::class);
+
+        /** @var Art $art */
+        if (!$art = $repository->findOneBy(['slug' => $slug])) {
+            throw $this->createNotFoundException("No article for {$slug}");
+        }
+
         $content = 'This *is* some __markdown__';
 
         $item = $cache->getItem('markdown_' . md5($content));
@@ -38,9 +49,7 @@ class ArtController extends AbstractController
         $content = $item->get();
 
         return $this->render("page/art.html.twig", [
-            "title" => $this->titleIze($slug),
-            "content" => $content,
-            "slug" => $slug,
+            "art" => $art,
         ]);
     }
 

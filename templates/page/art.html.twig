@@ -3,13 +3,13 @@
 
 {% block body %}
     <h1>
-        Godspeed {{ title }} !
+        Godspeed {{ art.title }} !
     </h1>
     <div>
-        {{ content|raw }}
+        {{ art.content|markdown }}
     </div>
     <br/>
-    <a href="{{ path("news_toggle_heart", { slug: slug }) }}"class="heart btn btn-secondary">
+    <a href="{{ path("news_toggle_heart", { slug: art.slug }) }}"class="heart btn btn-secondary">
         <i class="far fa-heart" aria-hidden="true"></i>
         <span class="likes">5</span>
     </a>
