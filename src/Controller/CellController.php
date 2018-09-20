@@ -21,9 +21,9 @@ class CellController extends AbstractController
     }
 
     /**
-     * @Route("/news/{slug}", name="news")
+     * @Route("/art/{slug}", name="art")
      */
-    public function news(
+    public function art(
         string $slug = "world",
         MarkdownInterface $markdown,
         AdapterInterface $cache
