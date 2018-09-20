@@ -8,7 +8,7 @@ use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CellController extends AbstractController
+class ArtController extends AbstractController
 {
     /**
      * @Route("/", name= "home")
