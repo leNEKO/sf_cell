@@ -6,8 +6,9 @@
         Godspeed {{ art.title }} !
     </h1>
     <div>
-        {{ art.content|markdown }}
+        {{ art.content|cached_markdown }}
     </div>
+    <p>{{ art.publishedAt ? art.publishedAt|date('Y-m-d') : 'unpublished' }}</p>
     <br/>
     <a href="{{ path("news_toggle_heart", { slug: art.slug }) }}"class="heart btn btn-secondary">
         <i class="far fa-heart" aria-hidden="true"></i>
